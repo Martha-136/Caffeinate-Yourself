@@ -24,6 +24,7 @@ char notes[] = "C";         //Note played by Buzzer
 int beat = 1;               //Number of beats per note
 int tempo = 330;            //how long beat is
 int FSR_Pin = A15;          //analog pin 5
+int counter = 0;            // counts coffee trips
 
 
 //Function from SeedStudio's Buzzer Example
@@ -49,9 +50,23 @@ void playNote(char note, int duration) {
     }
 }
 
+void coffeeStatement(){
+while(counter == 0){
+      lcd.print("GET MORE COFFEE");
+      counter ++;
+    }
+while(counter == 1){
+    lcd.print("TIME TO CAFFIEINATE");
+    counter ++;
+}
+while(counter ==3){
+  lcd.print("COFFEE COFFEE COFFEE");
+  counter++;
+}
 
+    
 
-
+}
 void setup() 
 {
   
@@ -62,6 +77,7 @@ void setup()
     delay(1000);
 }
 
+
 void loop() 
 {
   int FSRReading = analogRead(FSR_Pin);    //get a reading of the pressure sensor 
@@ -69,7 +85,8 @@ void loop()
   
   //if(digitalRead(pinButton)){    //When Button is pressed
   if(FSRReading < 50 && FSRReading > 0){    //when reading value is equal to an empty coaster 
-     lcd.clear();    
+     lcd.clear(); 
+     lcd.setCursor(0,0) ; 
      lcd.print("Put coffee on me");
      lcd.setRGB(255,0,255);    //purple
     // for (int positionCounter = 0; positionCounter < 60; positionCounter++) {
@@ -79,8 +96,9 @@ void loop()
     
   }else if(FSRReading < 300 && FSRReading > 50){     //when reading value is equal to an empty cup
     lcd.clear();
-    lcd.print("GET MORE COFFEE");
+    lcd.setCursor(0,0);
     lcd.setRGB(255,colorG,colorB); //red
+    coffeeStatement();
     playNote(notes[0], beat* tempo);
     delay(tempo / 2);
   
