@@ -61,7 +61,7 @@ while(counter == 1){
 }
 while(counter ==3){
   lcd.print("COFFEE COFFEE COFFEE");
-  counter++;
+  counter = 0;
 }
 
     
