@@ -50,23 +50,6 @@ void playNote(char note, int duration) {
     }
 }
 
-void coffeeStatement(){
-  if(counter == 4){
-    counter = 0;
-  }
-while(counter == 0){
-      lcd.print("GET MORE COFFEE");
-    }
-while(counter == 1){
-    lcd.print("TIME TO CAFFIEINATE");
-}
-while(counter ==3){
-  lcd.print("COFFEE COFFEE COFFEE");
-}
-
-    
-
-}
 void setup() 
 {
   
@@ -98,8 +81,7 @@ void loop()
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.setRGB(255,colorG,colorB); //red
-    coffeeStatement();
-    counter++;
+    lcd.print("GET MORE COFFEE");
     playNote(notes[0], beat* tempo);
     delay(tempo / 2);
   
